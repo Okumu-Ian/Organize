@@ -1,0 +1,26 @@
+﻿@page "/signin"
+<div class="sign-form">
+    <p class="welcome-text">Hello @(string.IsNullOrEmpty(Username)?"User":Username) - Today is @Day!</p>
+    <input type="text" class="sign-input form-control" placeholder="Username" @onchange="HandleUserNameChanged"/>
+    <input type="password" class="sign-input form-control" placeholder="Password"/>
+
+    <button class="sign-button btn btn-primary" type="submit">Sign In</button>
+
+    <div class="signup">
+        <a href="/signup">Sign Up</a>
+    </div>
+
+</div>
+
+@code {
+    //get the day
+    private string Day { get; } = DateTime.Now.DayOfWeek.ToString();
+
+    //create new property for username
+    private string Username { get; set; }
+
+    private void HandleUserNameChanged(ChangeEventArgs evenArgs)
+    {
+        Username = evenArgs.Value.ToString();
+    }
+}
